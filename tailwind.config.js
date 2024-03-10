@@ -8,6 +8,7 @@ module.exports = {
         'surface': '#151515',
         'title': '#F2F2F2',
         'body': '#D3D4D4',
+        'hover': '#50C3F6',
       },
     },
   },
