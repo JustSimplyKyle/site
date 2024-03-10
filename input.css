@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  h1 {
+    @apply text-3xl;
+    @apply text-title;
+    @apply font-bold;
+  }
+
+  h2 {
+    @apply text-2xl;
+    @apply text-title;
+    @apply font-bold;
+  }
+
+  h3 {
+    @apply text-xl;
+    @apply text-title;
+    @apply font-bold;
+  }
+
+  h4 {
+    @apply text-lg;
+    @apply text-title;
+    @apply font-bold;
+  }
+
+  ol {
+    @apply list-decimal
+  }
+
+  ul {
+    @apply list-disc
+  }
+
+  /* ... */
+}
