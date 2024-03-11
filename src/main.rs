@@ -8,6 +8,8 @@ use dioxus_router::prelude::*;
 
 use log::LevelFilter;
 
+const _INPUT_CSS: &str = manganis::mg!(file("input.css"));
+
 #[derive(Routable, Clone)]
 #[rustfmt::skip]
 enum Route {
@@ -35,14 +37,28 @@ fn main() {
 }
 
 pub fn App() -> Element {
-    rsx! { Router::<Route> {} }
+    rsx! {
+        link {
+            rel: "preconnect",
+            href: "https://rsms.me"
+        }
+        link {
+            rel: "stylesheet",
+            href: "https:/rsms.me/inter/inter.css"
+        }
+        Router::<Route> {}
+    }
 }
 
 fn Home() -> Element {
+    let content = include_str!("../pages/self_introduction.md");
     rsx! {
+        div { class: "flex flex-col items-center justify-center text-6xl font-bold",
+            "Self Introduction"
+        }
         div {
-            class: "flex flex-col items-center justify-center text-6xl font-bold",
-            "Self Introduction",
+            class: "flex flex-col items-center justify-center mt-8",
+            MarkdownRenderer {content}
         }
     }
 }
@@ -62,19 +78,18 @@ fn NavBar() -> Element {
             href: "https://fonts.googleapis.com/icon?family=Material+Icons",
             rel: "stylesheet"
         }
-        div {
-            class: "bg-surface min-w-full min-h-screen text-body",
+        div { class: "bg-surface min-w-full min-h-screen text-body",
             nav {
-                div {
-                    class: "flex-row space-x-5 p-6 pl-12 mb-8 bg-gray-800 backdrop-blur-xl opacity-80",
+                div { class: "flex-row space-x-5 p-6 pl-12 mb-8 bg-gray-800 backdrop-blur-xl opacity-80",
                     for link in links {
                         Link {
-                            class: "bg-gray-700 hover:text-hover rounded-2xl drop-shadow-lg backdrop-blur-xl p-4",
-                            to: link.0, {link.1}
+                            class: "bg-gray-700 transition hover:text-hover rounded-2xl drop-shadow-lg backdrop-blur-xl p-4",
+                            to: link.0,
+                            {link.1}
                         }
                     }
-                 }
-            },
+                }
+            }
             Outlet::<Route> {}
         }
     }
@@ -87,7 +102,7 @@ pub struct BlogPost {
     description: &'static str,
     link: &'static str,
     content: &'static str,
-    tags: Option<&'static [&'static str]>,
+    tags: &'static [&'static str],
 }
 
 impl Display for BlogPost {
@@ -100,53 +115,49 @@ impl FromStr for BlogPost {
     type Err = Infallible;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let Some(x) = POSTS.iter().find(|x| x.0 == s).map(|x| x.1) else {
-            unreachable!()
-        };
+        let x = POSTS.iter().find(|x| x.0 == s).map(|x| x.1).unwrap();
         Ok(x)
     }
 }
 
+impl BlogPost {
+    const fn link_post(self) -> (&'static str, Self) {
+        (self.link, self)
+    }
+}
+
 pub const POSTS: &[(&str, BlogPost)] = &[
-    post_builder(BlogPost {
+    BlogPost {
         date: "March 10th, 2024",
         title: "Top Reasons of why Femboy is the Best",
         description: "The femboy thesis we've all wished for",
         link: "going-femboy",
         content: include_str!("../pages/femboy.md"),
-        tags: None,
-    }),
-    post_builder(BlogPost {
+        tags: &["humerous", "rant", "very funny"],
+    }
+    .link_post(),
+    BlogPost {
         date: "March 11th, 2024",
         title: "My journey with bevy",
         description: "Building a simple game using bevy 0.12",
         link: "building-tetris-in-bevy",
         content: include_str!("../pages/bevy.md"),
-        tags: Some(&["fun", "programming", "sadness"]),
-    }),
+        tags: &["fun", "programming", "sadness", "anguish"],
+    }
+    .link_post(),
 ];
-
-const fn post_builder(blog: BlogPost) -> (&'static str, BlogPost) {
-    (blog.link, blog)
-}
 
 #[component]
 fn BlogList() -> Element {
     rsx! {
-        div {
-            class: "flex flex-col space-y-7 text-xl mt-6",
+        div { class: "flex flex-col space-y-7 text-xl mt-6",
             for post in POSTS.iter() {
-                Link {
-                    to: Route::PostBlog { blog: post.1 },
+                Link { to: Route::PostBlog { blog: post.1 },
                     div {
-                        div {
-                            class: "transition hover:text-hover hover:shadow-lg",
+                        div { class: "transition hover:text-hover hover:shadow-lg",
                             { post.1.title }
                         }
-                        div {
-                            class: "text-sm",
-                            { post.1.date }
-                        }
+                        div { class: "text-sm text-slate-400", { post.1.date } }
                     }
                 }
             }
@@ -156,12 +167,8 @@ fn BlogList() -> Element {
 
 fn Blog() -> Element {
     rsx! {
-        div {
-            class: "flex flex-col items-center justify-center font-sans",
-            p {
-                class: "text-6xl font-bold",
-                "Blog"
-            }
+        div { class: "flex flex-col items-center justify-center font-sans",
+            p { class: "text-6xl font-bold", "Blog" }
             Outlet::<Route> {}
         }
     }
@@ -169,34 +176,18 @@ fn Blog() -> Element {
 
 #[component]
 fn PostBlog(blog: BlogPost) -> Element {
-    let html_content = markdown::to_html(blog.content);
-    let tags = blog.tags.unwrap_or(&[]);
+    let content = blog.content;
     rsx! {
-        div {
-            class: "flex flex-col items-center justify-center font-sans p-8",
-            div {
-                class: "text-title space-y-2 mb-6",
-                p {
-                    class: "basis-4/6 text-4xl font-bold flex items-center justify-center",
-                    {blog.title}
-                }
-                p {
-                    class: "basis-1/6 text-body",
-                    div {
-                        class: "flex",
-                        span {
-                            class: "material-icons",
-                            "calendar_today"
-                        },
-                        div {
-                            class: "ml-1",
-                            "{blog.date}"
-                        }
-                        div {
-                            class: "ml-5 flex space-x-1",
-                            for tag in tags {
-                                div {
-                                    class: "bg-[#1598D3] rounded-full px-2 text-title",
+        div { class: "flex flex-col items-center justify-center font-sans p-8",
+            div { class: "flex flex-col items-center space-y-2 mb-6",
+                p { class: "basis-4/6 text-4xl font-bold text-title", {blog.title} }
+                p { class: "basis-1/6 text-body",
+                    div { class: "inline-flex",
+                        span { class: "material-icons", "calendar_today" }
+                        div { class: "ml-1 text-slate-400", "{blog.date}" }
+                        div { class: "ml-5 flex space-x-1",
+                            for tag in blog.tags {
+                                div { class: "bg-[#1598D3] rounded-full px-2 text-title",
                                     {tag}
                                 }
                             }
@@ -205,9 +196,27 @@ fn PostBlog(blog: BlogPost) -> Element {
                 }
             }
             div {
-                 class: "basis-1/6 text-lg space-y-3 text-body max-w-screen-md",
-                 dangerous_inner_html: html_content
+                MarkdownRenderer {content}
             }
+        }
+    }
+}
+
+#[component]
+fn MarkdownRenderer(content: String) -> Element {
+    let html_content = markdown::to_html(&*content);
+    rsx! {
+        script {
+            src: "/prism/prism.js"
+        }
+        link {
+            rel: "stylesheet",
+            r#type: "text/css",
+            href: "/prism/prism.css"
+        }
+        div {
+            class: "markdown-body basis-1/6 text-lg space-y-3 text-body text-lg max-w-prose border-none",
+            dangerous_inner_html: html_content,
         }
     }
 }

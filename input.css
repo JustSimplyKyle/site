@@ -4,36 +4,60 @@
 
 
 @layer base {
-  h1 {
+  .markdown-body h1 {
     @apply text-3xl;
     @apply text-title;
     @apply font-bold;
   }
 
-  h2 {
+  .markdown-body h2 {
     @apply text-2xl;
     @apply text-title;
     @apply font-bold;
   }
 
-  h3 {
+  .markdown-body h3 {
     @apply text-xl;
     @apply text-title;
     @apply font-bold;
   }
 
-  h4 {
+  .markdown-body h4 {
     @apply text-lg;
     @apply text-title;
     @apply font-bold;
   }
 
-  ol {
-    @apply list-decimal
+  .markdown-body ol {
+    @apply list-decimal;
+    @apply space-y-3;
   }
 
-  ul {
-    @apply list-disc
+  .markdown-body ul {
+    @apply list-disc;
+    @apply space-y-3;
+  }
+
+  :root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    /* fix for Chrome */
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root {
+      font-family: InterVariable, sans-serif;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700;
+    @apply rounded-md;
   }
 
   /* ... */
