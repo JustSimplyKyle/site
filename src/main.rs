@@ -6,8 +6,6 @@ use blog::blog::{Blog, BlogList, BlogPost, PostBlog};
 // import the prelude to get access to the `rsx!` macro and the `Element` type
 use dioxus::prelude::*;
 
-use log::LevelFilter;
-
 const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 
 #[derive(Routable, Clone)]
@@ -32,7 +30,6 @@ enum Route {
 }
 
 fn main() {
-    dioxus_logger::init(LevelFilter::Info).expect("failed to init logger");
     // launch the web app
     launch(App);
 }

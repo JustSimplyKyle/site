@@ -7,9 +7,6 @@ edition = "2021"
 
 [dependencies]
 dioxus = { git = "https://github.com/DioxusLabs/dioxus", features = ["web", "router"] }
-dioxus-logger = "0.4.1"
-dioxus-material-icons = "1.2.0"
-log = "0.4.21"
-manganis = "=0.1.0"
+manganis = "0.2.1"
 markdown = "0.3.0"
 reqwest = "0.11.25"
