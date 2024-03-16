@@ -12,7 +12,7 @@ const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 #[rustfmt::skip]
 enum Route {
     // All routes under the NavBar layout will be rendered inside of the NavBar Outlet
-    // #[nest("/blog")]
+    #[nest("/blog")]
     #[layout(NavBar)]
         #[route("/")]
         Home {},
@@ -55,8 +55,8 @@ fn Home() -> Element {
     }
 }
 #[component]
-fn PageNotFound(route: Vec<String>) -> Element {
-    let output = String::from("/") + &route.join("/");
+fn PageNotFound(route: ReadOnlySignal<Vec<String>>) -> Element {
+    let output = String::from("/") + &route().join("/");
     rsx! {
         div {
             class: "flex flex-col items-center",
@@ -110,8 +110,8 @@ fn NavBar() -> Element {
 }
 
 #[component]
-fn MarkdownRenderer(content: String) -> Element {
-    let html_content = markdown::to_html(&*content);
+fn MarkdownRenderer(content: ReadOnlySignal<String>) -> Element {
+    let html_content = markdown::to_html(&*content());
     rsx! {
         script { src: "/prism/prism.js" }
         link { rel: "stylesheet", r#type: "text/css", href: "/prism/prism.css" }
