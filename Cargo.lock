@@ -171,16 +171,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "blog"
-version = "0.1.0"
-dependencies = [
- "dioxus",
- "manganis",
- "markdown",
- "reqwest",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.15.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2014,6 +2004,16 @@ checksum = "060af1def72353a779fcc184c53e1965d3055a38b9e827f2259b2bff2d9c371e"
 dependencies = [
  "server_fn_macro",
  "syn",
+]
+
+[[package]]
+name = "site"
+version = "0.1.0"
+dependencies = [
+ "dioxus",
+ "manganis",
+ "markdown",
+ "reqwest",
 ]
 
 [[package]]
