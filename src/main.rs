@@ -15,6 +15,7 @@ const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 #[rustfmt::skip]
 enum Route {
     // All routes under the NavBar layout will be rendered inside of the NavBar Outlet
+    #[nest("/blog")]
     #[layout(NavBar)]
         #[route("/")]
         Home {},
