@@ -5,7 +5,6 @@ pub mod blog;
 use blog::blog::{Blog, BlogList, BlogPost, PostBlog};
 // import the prelude to get access to the `rsx!` macro and the `Element` type
 use dioxus::prelude::*;
-use dioxus_router::prelude::*;
 
 use log::LevelFilter;
 
@@ -15,7 +14,7 @@ const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 #[rustfmt::skip]
 enum Route {
     // All routes under the NavBar layout will be rendered inside of the NavBar Outlet
-    #[nest("/blog")]
+    // #[nest("/blog")]
     #[layout(NavBar)]
         #[route("/")]
         Home {},

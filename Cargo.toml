@@ -6,10 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { version = "0.5.0-alpha.0", features = ["web", "router"] }
+dioxus = { git = "https://github.com/DioxusLabs/dioxus", features = ["web", "router"] }
 dioxus-logger = "0.4.1"
 dioxus-material-icons = "1.2.0"
-dioxus-router = { version = "0.5.0-alpha.0", features = ["web"] }
 log = "0.4.21"
 manganis = "=0.1.0"
 markdown = "0.3.0"
