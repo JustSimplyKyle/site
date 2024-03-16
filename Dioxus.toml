@@ -8,12 +8,14 @@ name = "Tailwind CSS + Dioxus"
 default_platform = "web"
 
 # `build` & `serve` dist path
-out_dir = "dist"
+out_dir = "docs"
 
 # resource (public) file folder
 asset_dir = "public"
 
 [web.app]
+
+# base_path = "site"
 
 # HTML title tag content
 title = "dioxus | ⛺"
