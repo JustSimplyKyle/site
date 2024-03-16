@@ -9,6 +9,8 @@ use dioxus_router::prelude::*;
 
 use log::LevelFilter;
 
+const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
+
 #[derive(Routable, Clone)]
 #[rustfmt::skip]
 enum Route {
