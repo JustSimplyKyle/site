@@ -40,7 +40,12 @@ pub fn App() -> Element {
         link { rel: "stylesheet", href: "https:/rsms.me/inter/inter.css" }
         div {
             class: "bg-surface min-w-full min-h-screen text-body",
-            Router::<Route> {}
+            div {
+                Router::<Route> {}
+            }
+            div {
+                class: "min-h-32"
+            }
         }
     }
 }
