@@ -44,7 +44,7 @@ pub const POSTS: &[(&str, BlogPost)] = &[
         description: "Building a simple game using bevy 0.12",
         link: "building-tetris-in-bevy",
         content: include_str!("../../pages/bevy.md"),
-        tags: &["fun", "programming", "sadness", "anguish"],
+        tags: &["fun", "programming", "sadness"],
     }
     .link_post(),
     BlogPost {
@@ -95,7 +95,7 @@ pub fn Blog() -> Element {
 pub fn PostBlog(blog: BlogPost) -> Element {
     let content = blog.content;
     rsx! {
-        div { class: "flex flex-col items-center justify-center font-sans p-8",
+        div { class: "flex flex-col items-center justify-center font-sans p-8 w-fit",
             div { class: "flex flex-col items-center space-y-2 mb-6",
                 p { class: "basis-4/6 text-4xl font-bold text-title", {blog.title} }
                 p { class: "basis-1/6 text-body",

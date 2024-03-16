@@ -517,6 +517,17 @@ video {
 .markdown-body code {
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+/* stupid css pre block issues */
+
+pre {
+  min-width: -webkit-fill-available;
+  min-width: -moz-available;
+  min-width: stretch;
+  max-width: 0;
 }
 
 .markdown-body code:not(pre) {
@@ -698,10 +709,6 @@ video {
   margin-top: 2rem;
 }
 
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
 .flex {
   display: flex;
 }
@@ -710,30 +717,17 @@ video {
   display: inline-flex;
 }
 
-.max-h-fit {
-  max-height: -moz-fit-content;
-  max-height: fit-content;
+.min-h-32 {
+  min-height: 8rem;
 }
 
 .min-h-screen {
   min-height: 100vh;
 }
 
-.min-h-12 {
-  min-height: 3rem;
-}
-
-.min-h-20 {
-  min-height: 5rem;
-}
-
-.min-h-32 {
-  min-height: 8rem;
-}
-
-.min-h-fit {
-  min-height: -moz-fit-content;
-  min-height: fit-content;
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .min-w-full {
@@ -838,11 +832,6 @@ video {
 .bg-surface {
   --tw-bg-opacity: 1;
   background-color: rgb(21 21 21 / var(--tw-bg-opacity));
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .p-4 {
@@ -958,16 +947,6 @@ video {
 
 .\*\:animate-floatUp > * {
   animation: floatUp 0.5s ease-out forwards;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.\*\:animate-spin > * {
-  animation: spin 1s linear infinite;
 }
 
 .hover\:text-hover:hover {

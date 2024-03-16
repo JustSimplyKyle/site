@@ -50,6 +50,15 @@
 
   .markdown-body code {
     @apply bg-slate-800;
+    @apply max-w-fit;
+  }
+
+  /* stupid css pre block issues */
+  pre {
+    min-width: -webkit-fill-available;
+    min-width: -moz-available;
+    min-width: stretch;
+    max-width: 0;
   }
 
   .markdown-body code:not(pre) {
