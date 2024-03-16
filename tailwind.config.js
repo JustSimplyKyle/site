@@ -10,6 +10,9 @@ module.exports = {
         'body': '#D3D4D4',
         'hover': '#50C3F6',
       },
+      animation: {
+        floatUp: 'floatUp 0.5s ease-out forwards'
+      },
     },
   },
   plugins: [],

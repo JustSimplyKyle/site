@@ -38,6 +38,24 @@
     @apply space-y-3;
   }
 
+  .markdown-body a {
+    @apply text-hover;
+    @apply transition-all;
+    @apply duration-500;
+    @apply decoration-transparent;
+    @apply hover:underline;
+    @apply hover:decoration-inherit;
+    /* @apply hover:underline; */
+  }
+
+  .markdown-body code {
+    @apply bg-slate-800;
+  }
+
+  .markdown-body code:not(pre) {
+    @apply p-0.5;
+  }
+
   :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;
@@ -61,4 +79,16 @@
   }
 
   /* ... */
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(3%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

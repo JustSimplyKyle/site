@@ -6,7 +6,7 @@ My current operating system is "Arch Linux", using the WM `Hyprland`.
 
 # Projects
 - **cpsv**: a **C**om**p**ress to **S**et **S**ize video compressor. It's a lightweight wrapper around `ffmpeg` and `av1an`.
-- **tetris-with-bevy**: My nascent introduction to game develepoment. Using bevy 0.12 and *NO ASSETS* to create a game using bevy. You can play it [here]("https://justsimplykyle.github.io/tetris-with-bevy/")
+- **tetris-with-bevy**: My nascent introduction to game develepoment. Using bevy 0.12 and *NO ASSETS* to create a game using bevy. You can play it [here](https://justsimplykyle.github.io/tetris-with-bevy/)
 - **This website**: My first view to web dev, as you can see from the not-so-good-looking page.
 - **Era Connect**: A new type of Minceraft Launcher, focused on user experience and nice looks.
 
