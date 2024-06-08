@@ -202,31 +202,7 @@ function truthy(val) {
             root.appendChild(els[k]);
         }
     }
-    const attr = [];
-                    let attr_cache_hit, attr_cache_idx;
-                    function get_attr() {
-                        attr_cache_idx = u8buf[u8bufp++];
-                        if(attr_cache_idx & 128){
-                            attr_cache_hit=s.substring(sp,sp+=u8buf[u8bufp++]);
-                            attr[attr_cache_idx&4294967167]=attr_cache_hit;
-                            return attr_cache_hit;
-                        }
-                        else{
-                            return attr[attr_cache_idx&4294967167];
-                        }
-                    }let u8buf,u8bufp;const evt = [];
-                    let evt_cache_hit, evt_cache_idx;
-                    function get_evt() {
-                        evt_cache_idx = u8buf[u8bufp++];
-                        if(evt_cache_idx & 128){
-                            evt_cache_hit=s.substring(sp,sp+=u8buf[u8bufp++]);
-                            evt[evt_cache_idx&4294967167]=evt_cache_hit;
-                            return evt_cache_hit;
-                        }
-                        else{
-                            return evt[evt_cache_idx&4294967167];
-                        }
-                    }let u16buf,u16bufp;let s = "";let lsp,sp,sl; let c = new TextDecoder();const ns_cache = [];
+    let u32buf,u32bufp;const ns_cache = [];
                     let ns_cache_cache_hit, ns_cache_cache_idx;
                     function get_ns_cache() {
                         ns_cache_cache_idx = u8buf[u8bufp++];
@@ -238,8 +214,32 @@ function truthy(val) {
                         else{
                             return ns_cache[ns_cache_cache_idx&4294967167];
                         }
-                    }let u32buf,u32bufp;
-            let id,bubbles,len,field,ptr,event_name,ns,value;
+                    }const attr = [];
+                    let attr_cache_hit, attr_cache_idx;
+                    function get_attr() {
+                        attr_cache_idx = u8buf[u8bufp++];
+                        if(attr_cache_idx & 128){
+                            attr_cache_hit=s.substring(sp,sp+=u8buf[u8bufp++]);
+                            attr[attr_cache_idx&4294967167]=attr_cache_hit;
+                            return attr_cache_hit;
+                        }
+                        else{
+                            return attr[attr_cache_idx&4294967167];
+                        }
+                    }const evt = [];
+                    let evt_cache_hit, evt_cache_idx;
+                    function get_evt() {
+                        evt_cache_idx = u8buf[u8bufp++];
+                        if(evt_cache_idx & 128){
+                            evt_cache_hit=s.substring(sp,sp+=u8buf[u8bufp++]);
+                            evt[evt_cache_idx&4294967167]=evt_cache_hit;
+                            return evt_cache_hit;
+                        }
+                        else{
+                            return evt[evt_cache_idx&4294967167];
+                        }
+                    }let u16buf,u16bufp;let s = "";let lsp,sp,sl; let c = new TextDecoder();let u8buf,u8bufp;
+            let bubbles,field,ns,event_name,id,len,value,ptr;
             export  function create(r){
                 d=r;
             }
@@ -252,11 +252,11 @@ function truthy(val) {
                     ls=m.getUint32(d+6*4,true);
                 }
                 p=ls;
-                if ((metaflags>>>5)&1){
-                t = m.getUint32(d+5*4,true);
-                u8buf=new Uint8Array(m.buffer,t,((m.buffer.byteLength-t)-(m.buffer.byteLength-t)%1)/1);
+                if ((metaflags>>>3)&1){
+                t = m.getUint32(d+3*4,true);
+                u32buf=new Uint32Array(m.buffer,t,((m.buffer.byteLength-t)-(m.buffer.byteLength-t)%4)/4);
             }
-            u8bufp=0;if ((metaflags>>>4)&1){
+            u32bufp=0;if ((metaflags>>>4)&1){
                 t = m.getUint32(d+4*4,true);
                 u16buf=new Uint16Array(m.buffer,t,((m.buffer.byteLength-t)-(m.buffer.byteLength-t)%2)/2);
             }
@@ -286,11 +286,11 @@ function truthy(val) {
                     s = c.decode(new DataView(m.buffer, lsp, sl));
                 }
             }
-            sp=0;if ((metaflags>>>3)&1){
-                t = m.getUint32(d+3*4,true);
-                u32buf=new Uint32Array(m.buffer,t,((m.buffer.byteLength-t)-(m.buffer.byteLength-t)%4)/4);
+            sp=0;if ((metaflags>>>5)&1){
+                t = m.getUint32(d+5*4,true);
+                u8buf=new Uint8Array(m.buffer,t,((m.buffer.byteLength-t)-(m.buffer.byteLength-t)%1)/1);
             }
-            u32bufp=0;
+            u8bufp=0;
                 for(;;){
                     op=m.getUint32(p,true);
                     p+=4;
