@@ -50,7 +50,6 @@
 
   .markdown-body code {
     @apply bg-slate-800;
-    @apply max-w-fit;
   }
 
   /* stupid css pre block issues */

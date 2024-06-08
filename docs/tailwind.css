@@ -517,8 +517,6 @@ video {
 .markdown-body code {
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-  max-width: -moz-fit-content;
-  max-width: fit-content;
 }
 
 /* stupid css pre block issues */

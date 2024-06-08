@@ -56,6 +56,16 @@ pub const POSTS: &[(&str, BlogPost)] = &[
         tags: &["humerous", "rant", "very funny"],
     }
     .link_post(),
+    BlogPost {
+        date: "June 8th, 2024",
+        title: "How to play rhythm games with your speaker!",
+        description:
+            "Embarks on a journey through my struggle to get my phone to hook up with a speaker",
+        link: "rhythm-game-speaker",
+        content: include_str!("../../pages/rhythm-games-with-speakers.md"),
+        tags: &["technology", "journey"],
+    }
+    .link_post(),
 ];
 
 #[component]

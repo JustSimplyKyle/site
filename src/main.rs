@@ -38,14 +38,9 @@ pub fn App() -> Element {
     rsx! {
         link { rel: "preconnect", href: "https://rsms.me" }
         link { rel: "stylesheet", href: "https:/rsms.me/inter/inter.css" }
-        div {
-            class: "bg-surface min-w-full min-h-screen text-body",
-            div {
-                Router::<Route> {}
-            }
-            div {
-                class: "min-h-32"
-            }
+        div { class: "bg-surface min-w-full min-h-screen text-body",
+            div { Router::<Route> {} }
+            div { class: "min-h-32" }
         }
     }
 }
@@ -56,31 +51,22 @@ fn Home() -> Element {
         div { class: "flex flex-col items-center justify-center text-6xl font-bold",
             "Self Introduction"
         }
-        div { class: "flex flex-col items-center justify-center mt-8", MarkdownRenderer { content } }
+        div { class: "flex flex-col items-center justify-center mt-8",
+            MarkdownRenderer { content }
+        }
     }
 }
 #[component]
 fn PageNotFound(route: ReadOnlySignal<Vec<String>>) -> Element {
     let output = String::from("/") + &route().join("/");
     rsx! {
-        div {
-            class: "flex flex-col items-center",
-            p {
-                class: "text-4xl text-bold my-8",
-                "Page not found"
-            }
-            div {
-                class: "space-y-1 animate-floatUp",
+        div { class: "flex flex-col items-center",
+            p { class: "text-4xl text-bold my-8", "Page not found" }
+            div { class: "space-y-1 animate-floatUp",
                 p { "We are terribly sorry, but the page you requested doesn't exist." }
-                div {
-                    class: "text-red-300",
-                    p {
-                        class: "text-xl",
-                        "Log:"
-                    }
-                    p {
-                        "Attempt to navigate to: {output}"
-                    }
+                div { class: "text-red-300",
+                    p { class: "text-xl", "Log:" }
+                    p { "Attempt to navigate to: {output}" }
                 }
             }
         }
@@ -106,10 +92,7 @@ fn NavBar() -> Element {
                     }
                 }
             }
-            div {
-                class: "z-10",
-                Outlet::<Route> {}
-            }
+            div { class: "z-10", Outlet::<Route> {} }
         }
     }
 }
@@ -122,7 +105,7 @@ fn MarkdownRenderer(content: ReadOnlySignal<String>) -> Element {
         link { rel: "stylesheet", r#type: "text/css", href: "/prism/prism.css" }
         div {
             class: "*:animate-floatUp markdown-body text-lg space-y-3 text-body text-lg max-w-prose border-none",
-            dangerous_inner_html: html_content,
+            dangerous_inner_html: html_content
         }
     }
 }
