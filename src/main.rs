@@ -36,9 +36,21 @@ fn main() {
 
 pub fn App() -> Element {
     rsx! {
+        head {
+            link { href: "https://fonts.googleapis.com", rel: "preconnect" }
+            link {
+                crossorigin: "false",
+                rel: "preconnect",
+                href: "https://fonts.gstatic.com"
+            }
+            link {
+                rel: "stylesheet",
+                href: "https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+            }
+        }
         link { rel: "preconnect", href: "https://rsms.me" }
         link { rel: "stylesheet", href: "https:/rsms.me/inter/inter.css" }
-        div { class: "bg-surface min-w-full min-h-screen text-body",
+        div { class: "bg-surface font-rubik min-w-full min-h-screen text-body",
             div { Router::<Route> {} }
             div { class: "min-h-32" }
         }
@@ -49,7 +61,7 @@ fn Home() -> Element {
     let content = include_str!("../pages/self_introduction.md");
     rsx! {
         div { class: "flex flex-col items-center justify-center text-6xl font-bold",
-            "Self Introduction"
+            "Hi I'm Kyle!"
         }
         div { class: "flex flex-col items-center justify-center mt-8",
             MarkdownRenderer { content }
@@ -74,20 +86,24 @@ fn PageNotFound(route: ReadOnlySignal<Vec<String>>) -> Element {
 }
 
 fn NavBar() -> Element {
-    let links = [(Route::Home {}, "Home"), (Route::BlogList {}, "Blog")];
+    let links = [(Route::Home {}, "KYLE"), (Route::BlogList {}, "Blog")];
     rsx! {
         link {
             href: "https://fonts.googleapis.com/icon?family=Material+Icons",
             rel: "stylesheet"
         }
         div {
-            nav { class: "sticky top-0 min-w-full z-20",
-                div { class: "flex-row space-x-5 p-6 pl-12 mb-8 bg-gray-800 backdrop-blur-xl backdrop-opacity-70",
-                    for link in links {
-                        Link {
-                            class: "bg-gray-700 transition hover:text-hover rounded-2xl drop-shadow-lg backdrop-blur-xl p-4",
-                            to: link.0,
-                            {link.1}
+            nav { class: "sticky top-0 min-w-full z-20 px-8",
+                div {
+                    class: "grid grid-flow-col h-full w-full text-xl items-center gap-24",
+                    div {
+                        class: "justify-self-start h-full flex items-center",
+                        for link in links {
+                            Link {
+                                class: "py-8 transition hover:text-hover h-full drop-shadow-lg backdrop-blur-xl px-4 font-bold",
+                                to: link.0,
+                                {link.1}
+                            }
                         }
                     }
                 }
@@ -104,7 +120,7 @@ fn MarkdownRenderer(content: ReadOnlySignal<String>) -> Element {
         script { src: "/prism/prism.js" }
         link { rel: "stylesheet", r#type: "text/css", href: "/prism/prism.css" }
         div {
-            class: "*:animate-floatUp markdown-body text-lg space-y-3 text-body text-lg max-w-prose border-none",
+            class: "*:animate-floatUp *:font-rubik markdown-body text-lg space-y-3 text-body text-lg w-[70ch] border-none",
             dangerous_inner_html: html_content
         }
     }

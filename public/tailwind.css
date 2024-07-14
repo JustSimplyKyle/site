@@ -532,18 +532,6 @@ pre {
   padding: 0.125rem;
 }
 
-:root {
-  font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
-  /* fix for Chrome */
-}
-
-@supports (font-variation-settings: normal) {
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
-}
-
 ::-webkit-scrollbar {
   width: 0.75rem;
 }
@@ -687,10 +675,6 @@ pre {
   margin-bottom: 1.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -715,6 +699,14 @@ pre {
   display: inline-flex;
 }
 
+.grid {
+  display: grid;
+}
+
+.h-full {
+  height: 100%;
+}
+
 .min-h-32 {
   min-height: 8rem;
 }
@@ -723,17 +715,21 @@ pre {
   min-height: 100vh;
 }
 
+.w-\[70ch\] {
+  width: 70ch;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.min-w-full {
-  min-width: 100%;
+.w-full {
+  width: 100%;
 }
 
-.max-w-prose {
-  max-width: 65ch;
+.min-w-full {
+  min-width: 100%;
 }
 
 .basis-1\/6 {
@@ -748,8 +744,8 @@ pre {
   animation: floatUp 0.5s ease-out forwards;
 }
 
-.flex-row {
-  flex-direction: row;
+.grid-flow-col {
+  grid-auto-flow: column;
 }
 
 .flex-col {
@@ -764,16 +760,14 @@ pre {
   justify-content: center;
 }
 
+.gap-24 {
+  gap: 6rem;
+}
+
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.25rem * var(--tw-space-x-reverse));
   margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -800,8 +794,8 @@ pre {
   margin-bottom: calc(1.75rem * var(--tw-space-y-reverse));
 }
 
-.rounded-2xl {
-  border-radius: 1rem;
+.justify-self-start {
+  justify-self: start;
 }
 
 .rounded-full {
@@ -817,27 +811,9 @@ pre {
   background-color: rgb(21 152 211 / var(--tw-bg-opacity));
 }
 
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.bg-gray-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-
 .bg-surface {
   --tw-bg-opacity: 1;
   background-color: rgb(21 21 21 / var(--tw-bg-opacity));
-}
-
-.p-4 {
-  padding: 1rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
 }
 
 .p-8 {
@@ -849,8 +825,23 @@ pre {
   padding-right: 0.5rem;
 }
 
-.pl-12 {
-  padding-left: 3rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.font-rubik {
+  font-family: Rubik;
 }
 
 .font-sans {
@@ -891,11 +882,6 @@ pre {
   color: rgb(211 212 212 / var(--tw-text-opacity));
 }
 
-.text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
-}
-
 .text-slate-400 {
   --tw-text-opacity: 1;
   color: rgb(148 163 184 / var(--tw-text-opacity));
@@ -913,12 +899,6 @@ pre {
 
 .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-.backdrop-opacity-70 {
-  --tw-backdrop-opacity: opacity(0.7);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
@@ -945,6 +925,10 @@ pre {
 
 .\*\:animate-floatUp > * {
   animation: floatUp 0.5s ease-out forwards;
+}
+
+.\*\:font-rubik > * {
+  font-family: Rubik;
 }
 
 .hover\:text-hover:hover {

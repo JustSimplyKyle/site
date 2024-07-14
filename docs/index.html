@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>dioxus | ⛺</title>
-  <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="/tailwind.css">
+  <head>
+    <title>dioxus | ⛺</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/./assets/dioxus/Tailwind CSS + Dioxus.js"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="/./assets/dioxus/Tailwind CSS + Dioxus_bg.wasm"
+      as="fetch"
+      type="application/wasm"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/tailwind.css">
 
-</head>
-<body>
-  <div id="main"></div>
-  <script type="module">
-    import init from "/./assets/dioxus/Tailwind CSS + Dioxus.js";
-    init("/./assets/dioxus/Tailwind CSS + Dioxus_bg.wasm").then(wasm => {
-      if (wasm.__wbindgen_start == undefined) {
-        wasm.main();
-      }
-    });
-  </script>
-  
-</body>
-</html><script>(function () {
+  </head>
+  <body>
+    <div id="main"></div>
+    <script>
+      // We can't use a module script here because we need to start the script immediately when streaming
+      import("/./assets/dioxus/Tailwind CSS + Dioxus.js").then(
+        ({ default: init }) => {
+          init("/./assets/dioxus/Tailwind CSS + Dioxus_bg.wasm").then((wasm) => {
+            if (wasm.__wbindgen_start == undefined) {
+              wasm.main();
+            }
+          });
+        }
+      );
+    </script>
+    
+  </body>
+</html>
+<script>(function () {
   const POLL_INTERVAL_MIN = 250;
   const POLL_INTERVAL_MAX = 4000;
   const POLL_INTERVAL_SCALE_FACTOR = 2;
@@ -53,8 +70,6 @@
   var ws = new WebSocket(url);
 
   ws.onmessage = (ev) => {
-    console.log("Received message: ", ev, ev.data);
-
     if (ev.data == "reload") {
       window.location.reload();
     }
