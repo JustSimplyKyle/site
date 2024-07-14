@@ -120,7 +120,7 @@ fn MarkdownRenderer(content: ReadOnlySignal<String>) -> Element {
         script { src: "/prism/prism.js" }
         link { rel: "stylesheet", r#type: "text/css", href: "/prism/prism.css" }
         div {
-            class: "*:animate-floatUp *:font-rubik markdown-body text-lg space-y-3 text-body text-lg w-[70ch] border-none",
+            class: "*:animate-floatUp *:font-rubik markdown-body text-lg space-y-3 text-body text-lg w-full max-w-[70ch] border-none",
             dangerous_inner_html: html_content
         }
     }
