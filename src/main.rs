@@ -63,7 +63,7 @@ fn Home() -> Element {
         div { class: "flex flex-col items-center justify-center text-6xl font-bold",
             "Hi I'm Kyle!"
         }
-        div { class: "flex flex-col items-center justify-center mt-8",
+        div { class: "flex flex-col items-center justify-center mt-8 mx-6",
             MarkdownRenderer { content }
         }
     }
@@ -100,7 +100,7 @@ fn NavBar() -> Element {
                         class: "justify-self-start h-full flex items-center",
                         for link in links {
                             Link {
-                                class: "py-8 transition hover:text-hover h-full drop-shadow-lg backdrop-blur-xl px-4 font-bold",
+                                class: "py-8 transition hover:text-hover h-full px-4 font-bold",
                                 to: link.0,
                                 {link.1}
                             }
