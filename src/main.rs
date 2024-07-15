@@ -63,7 +63,7 @@ fn Home() -> Element {
         div { class: "flex flex-col items-center justify-center text-6xl font-bold",
             "Hi I'm Kyle!"
         }
-        div { class: "flex flex-col items-center justify-center mt-8 mx-6",
+        div { class: "flex flex-col items-center justify-center mt-8",
             MarkdownRenderer { content }
         }
     }
@@ -93,9 +93,9 @@ fn NavBar() -> Element {
             rel: "stylesheet"
         }
         div {
-            nav { class: "sticky top-0 min-w-full z-20 px-8",
+            nav { class: "sticky top-0 min-w-full z-20 bg-surface px-8",
                 div {
-                    class: "grid grid-flow-col h-full w-full text-xl items-center gap-24",
+                    class: "grid grid-flow-col h-full bg- w-full text-xl items-center gap-24",
                     div {
                         class: "justify-self-start h-full flex items-center",
                         for link in links {
@@ -108,7 +108,7 @@ fn NavBar() -> Element {
                     }
                 }
             }
-            div { class: "z-10", Outlet::<Route> {} }
+            div { class: "z-10 bg-surface mx-6", Outlet::<Route> {} }
         }
     }
 }
